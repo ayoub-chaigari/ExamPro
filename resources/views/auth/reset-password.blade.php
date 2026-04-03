@@ -1,0 +1,62 @@
+<x-guest-layout>
+    <div class="text-center mb-10">
+        <h2 class="text-3xl font-black text-slate-800 tracking-tight flex-col flex items-center gap-4">
+            <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl shadow-sm flex items-center justify-center border border-blue-100 mb-2">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            </div>
+            Réinitialiser le mot de passe
+        </h2>
+        <p class="text-slate-500 mt-4 text-sm font-medium leading-relaxed">
+            Choisissez un nouveau mot de passe sécurisé pour votre compte.
+        </p>
+    </div>
+
+    <form method="POST" action="{{ route('password.store') }}" class="space-y-6">
+        @csrf
+
+        <!-- Password Reset Token -->
+        <input type="hidden" name="token" value="{{ $token }}">
+
+        <!-- Email Address -->
+        <div>
+            <label for="email" class="block font-bold text-sm text-slate-700 mb-2">{{ __('Adresse Email') }}</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                </div>
+                <input id="email" class="block w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 focus:bg-white text-slate-900 font-medium transition-all outline-none" type="email" name="email" value="{{ old('email', $email) }}" required autofocus readonly />
+            </div>
+            <x-input-error :messages="$errors->get('email')" class="mt-2 text-red-600 font-semibold text-sm" />
+        </div>
+
+        <!-- Password -->
+        <div>
+            <label for="password" class="block font-bold text-sm text-slate-700 mb-2">{{ __('Nouveau Mot de passe') }}</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                </div>
+                <input id="password" class="block w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 focus:bg-white text-slate-900 font-medium transition-all outline-none" type="password" name="password" required autocomplete="new-password" placeholder="••••••••" />
+            </div>
+            <x-input-error :messages="$errors->get('password')" class="mt-2 text-red-600 font-semibold text-sm" />
+        </div>
+
+        <!-- Confirm Password -->
+        <div>
+            <label for="password_confirmation" class="block font-bold text-sm text-slate-700 mb-2">{{ __('Confirmer le mot de passe') }}</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                </div>
+                <input id="password_confirmation" class="block w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 focus:bg-white text-slate-900 font-medium transition-all outline-none" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="••••••••" />
+            </div>
+            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2 text-red-600 font-semibold text-sm" />
+        </div>
+
+        <div class="flex items-center justify-end pt-4">
+            <button type="submit" class="w-full px-6 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 active:bg-blue-800 focus:ring-4 focus:ring-blue-200 transition-all shadow-lg shadow-blue-600/20 transform active:scale-[0.98]">
+                {{ __('Réinitialiser le mot de passe') }}
+            </button>
+        </div>
+    </form>
+</x-guest-layout>

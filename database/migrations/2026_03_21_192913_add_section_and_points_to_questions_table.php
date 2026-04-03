@@ -1,0 +1,27 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::table('questions', function (Blueprint $table) {
+            $table->foreignId('section_id')->nullable()->constrained()->nullOnDelete();
+            $table->float('points')->default(1);
+            $table->integer('order')->default(1);
+            $table->boolean('requires_answer_space')->default(false);
+            $table->string('answer_space_size')->nullable(); // small, medium, large
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('questions', function (Blueprint $table) {
+            $table->dropForeign(['section_id']);
+            $table->dropColumn(['section_id', 'points', 'order', 'requires_answer_space', 'answer_space_size']);
+        });
+    }
+};
