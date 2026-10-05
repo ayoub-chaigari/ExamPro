@@ -1,59 +1,140 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ExamPro
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+ExamPro is a Laravel-based exam and quiz management platform designed for teachers and administrators to create, organize, and deliver assessments efficiently.
 
-## About Laravel
+It includes a question bank, subject/category management, exam creation with sections and variants, quiz code access for students, grading workflows, and export features for exams and results.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Teacher dashboard for exam and question management
+- Category and subject organization
+- Question bank with import capabilities
+- Exam creation with duration, level, module, and grading metadata
+- Section-based exam structure
+- Variant generation for different versions of the same exam
+- Quiz generation with code-based student access
+- Student result tracking and scoring
+- PDF and Word export support
+- Role-based access for admin, teacher, and student users
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Tech Stack
 
-## Learning Laravel
+- PHP 8.2+
+- Laravel 12
+- MySQL / SQLite / other Laravel-supported databases
+- Tailwind CSS
+- Vite
+- Dompdf for PDF export
+- PhpWord for Word export
+- Laravel Breeze for authentication scaffolding
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Project Structure
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- `app/` — application logic, controllers, models, and services
+- `routes/` — web routes
+- `resources/` — Blade views, CSS, and frontend assets
+- `database/` — migrations, seeders, and schema
+- `public/` — public assets
+- `storage/` — generated user files and logs
+- `tests/` — application tests
 
-## Laravel Sponsors
+## Requirements
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Before running the project, make sure you have:
 
-### Premium Partners
+- PHP 8.2 or higher
+- Composer
+- Node.js and npm
+- A supported database (SQLite for local development is included by default)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Getting Started
 
-## Contributing
+1. Clone the repository
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+   ```bash
+   git clone https://github.com/your-username/ExamPro.git
+   cd ExamPro
+   ```
 
-## Code of Conduct
+2. Install PHP dependencies
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   ```bash
+   composer install
+   ```
 
-## Security Vulnerabilities
+3. Configure environment
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+4. Set up the database
+
+   ```bash
+   php artisan migrate
+   ```
+
+   For a fresh local development setup, you can also use:
+
+   ```bash
+   composer run setup
+   ```
+
+5. Install frontend dependencies
+
+   ```bash
+   npm install
+   ```
+
+6. Run the app
+
+   ```bash
+   npm run dev
+   ```
+
+   Or run Laravel and Vite together:
+
+   ```bash
+   composer run dev
+   ```
+
+7. Open the application in your browser
+
+   ```text
+   http://localhost:8000
+   ```
+
+## Default Admin / Teacher Workflow
+
+- Sign in as an admin or teacher
+- Create subjects/categories
+- Add exam questions to the question bank
+- Create exams and assign sections
+- Generate exam variants if needed
+- Share quiz access codes with students
+- Review submitted results and scores
+
+## Available Scripts
+
+```bash
+composer run setup
+composer run dev
+composer run test
+npm run build
+npm run dev
+```
+
+## Production Notes
+
+- Update the `.env` file with your production database and mail settings.
+- Ensure storage permissions are configured for uploaded files.
+- Build assets before deployment:
+
+  ```bash
+  npm run build
+  ```
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-source and available under the MIT license.
